@@ -22,4 +22,10 @@ CREATE TABLE courses(
     credits INT NOT NULL
 );
 
+-- Create enrollment table
+CREATE TABLE enrollment(
+    enrollment_id SERIAL PRIMARY KEY,
+    student_id INT REFERENCES students(student_id) ON DELETE CASCADE NOT NULL,
+    course_id INT REFERENCES courses(course_id) ON DELETE CASCADE NOT NULL
+);
 
