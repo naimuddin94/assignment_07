@@ -38,3 +38,12 @@ VALUES
 ('Rafi', 24, 'rafi@example.com', 41, 40, NULL),
 ('Sophia', 22, 'sophia@example.com', 50, 52, NULL),
 ('Hasan', 23, 'hasan@gmail.com', 43, 39, NULL);
+
+
+-- Insert sample data into the courses table
+INSERT INTO courses (course_name, credits)
+VALUES
+('Next.js', 3),
+('React.js', 4),
+('Databases', 3),
+('Prisma', 3)
