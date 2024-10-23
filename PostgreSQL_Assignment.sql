@@ -122,3 +122,10 @@ SELECT course_name, count(*) as students_enrolled FROM enrollment JOIN courses U
 -- Question number 07
 -- Calculate and display the average age of all students.
 SELECT ROUND(AVG(age), 2) as average_age FROM students;
+
+
+
+-- Question number 08
+-- Retrieve the names of students whose email addresses contain 'example.com'.
+SELECT student_name FROM students
+    WHERE email LIKE '%example.com%';
