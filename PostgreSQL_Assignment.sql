@@ -80,3 +80,14 @@ SELECT student_name FROM enrollment
 JOIN courses ON enrollment.course_id = courses.course_id
 JOIN students ON enrollment.student_id = students.student_id
 WHERE course_name = 'Next.js';
+
+
+-- Question number 03
+-- Update the status of the student with the highest total (frontend_mark + backend_mark) to 'Awarded'.
+UPDATE students
+SET status = 'Awarded'
+WHERE (frontend_mark + backend_mark) = (
+    SELECT MAX(frontend_mark + backend_mark)
+    FROM students
+);
+ 
