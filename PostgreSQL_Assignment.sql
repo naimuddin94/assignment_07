@@ -18,7 +18,7 @@ CREATE TABLE students(
 -- Create courses table
 CREATE TABLE courses(
     course_id SERIAL PRIMARY KEY,
-    course_name VARCHAR(50) NOT NULL,
+    course_name VARCHAR(50) UNIQUE NOT NULL,
     credits INT NOT NULL
 );
 
@@ -90,4 +90,23 @@ WHERE (frontend_mark + backend_mark) = (
     SELECT MAX(frontend_mark + backend_mark)
     FROM students
 );
- 
+
+
+
+-- Question number 04
+-- Delete all courses that have no students enrolled.
+DELETE FROM courses WHERE course_name NOT IN (SELECT DISTINCT course_name FROM enrollment JOIN courses USING(course_id));
+-- Better approach
+-- NOT IN can be slow because it evaluates the entire sub-query for every row. A better approach would be to use DELETE with NOT EXISTS, which is more efficient in most cases.
+DELETE FROM courses
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM enrollment
+    WHERE enrollment.course_id = courses.course_id
+);
+
+
+
+-- Question number 05
+-- Delete all courses that have no students enrolled.Retrieve the names of students using a limit of 2, starting from the 3rd student.
+SELECT student_name FROM students LIMIT 2 OFFSET 2;
